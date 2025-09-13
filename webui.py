@@ -84,8 +84,13 @@ def save_and_compare_faces(image1_path, image2_path):
     cv2.putText(img1, "Face 1", (bbox1[0], bbox1[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
     cv2.rectangle(img2, (bbox2[0], bbox2[1]), (bbox2[2], bbox2[3]), (0, 255, 0), 2)
     cv2.putText(img2, "Face 2", (bbox2[0], bbox2[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
-    
-    return result_text, f"{similarity:.4f}", img1, img2, get_history_images()
+
+    # 修改點：將繪製後的圖片轉換為 RGB 格式，以匹配 Gradio 的預期
+    output_img1_rgb = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
+    output_img2_rgb = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
+
+    # 修改點：返回 RGB 格式的圖片
+    return result_text, f"{similarity:.4f}", output_img1_rgb, output_img2_rgb, get_history_images()
 
 def clear_history():
     """清除所有歷史圖片"""
