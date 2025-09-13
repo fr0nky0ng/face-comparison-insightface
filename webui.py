@@ -20,7 +20,7 @@ app.prepare(ctx_id=-1, det_size=(640, 640))
 print("InsightFace: Model prepared.")
 
 # --- 2. 設定相似度閾值 ---
-SIMILARITY_THRESHOLD = 0.5
+SIMILARITY_THRESHOLD = 0.65
 
 # --- 3. 輔助函數 ---
 def get_sorted_images(directory):
